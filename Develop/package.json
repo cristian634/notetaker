@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "util": "^0.12.2",
+    "util.promisify": "^1.0.1"
   }
 }
