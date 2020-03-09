@@ -52,8 +52,9 @@ app.get("/api/notes", async(req,res) => {
     res.json(JSON.parse(file));
 });
 
-app.delete("/api/notes/:num", async function (res, req){
-    const num = req.params.num;
+app.delete("/api/notes/:id", async function (res, req){
+    let id = res.params.id;
+
     id = JSON.parse(id);
 
     let file = await fs.readFile("./db/db.json","utf8");
@@ -62,10 +63,10 @@ app.delete("/api/notes/:num", async function (res, req){
 
     fs.writeFile("./db/db.json", JSON.stringify(newFile)).then(
         ()=> {
-            res.json(newFile);
+            req.json(newFile);
         }
-    );
-
+    ).catch(err => console.log(err));
+    
 
 
 });
