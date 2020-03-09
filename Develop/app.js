@@ -26,6 +26,7 @@ app.get("/notes", (req,res)=> {
     res.sendFile(path.join(__dirname, "./public/notes.html"));
 });
 
+//post  
 app.post("/api/notes", async function(req, res){
     let file = await fs.readFile("./db/db.json" , "utf8");
 
@@ -46,12 +47,14 @@ app.post("/api/notes", async function(req, res){
 
 });
 
+//raw JSON in browswer
 app.get("/api/notes", async(req,res) => {
     let file = await fs.readFile("./db/db.json","utf8");
     console.log("Got file: " + file)
     res.json(JSON.parse(file));
 });
 
+//delete notes by ID in the array of notes
 app.delete("/api/notes/:id", async function (res, req){
     let id = res.params.id;
 
@@ -71,6 +74,8 @@ app.delete("/api/notes/:id", async function (res, req){
 
 });
 
+
+//initialize app
 app.listen(PORT, () => {
     console.log("App listening on PORT: " + PORT);
 });
